@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             try {
               await deleteUser(currentUser);
             } catch (e) {
-              await signOut(auth);
+              await signOut(requireAuth());
             }
             if (typeof document !== "undefined") {
               document.cookie = "auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=lax";
