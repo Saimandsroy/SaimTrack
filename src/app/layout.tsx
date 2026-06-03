@@ -18,9 +18,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "SaimTrack",
   description: "Next generation tracking for study, jobs, and dsa",
-  icons: {
-    icon: "/logo.png",
+  appleWebApp: {
+    capable: true,
+    title: "SaimTrack",
+    statusBarStyle: "black-translucent",
   },
+};
+
+export const viewport = {
+  themeColor: "#1F1C1B",
 };
 
 export default function RootLayout({
