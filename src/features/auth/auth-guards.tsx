@@ -68,6 +68,8 @@ export function GuestOnly({ children }: { children: ReactNode }) {
     // If we were bounced back here with an unauthorized error from middleware, sign out.
     if (user && typeof window !== "undefined" && window.location.search.includes("error=unauthorized")) {
       expelUnauthorizedUser();
+      // Clean the URL so they aren't trapped if they try to log in again
+      router.replace("/auth/sign-in");
       return;
     }
 
