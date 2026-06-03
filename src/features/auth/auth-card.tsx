@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
@@ -65,6 +65,8 @@ export function AuthCard({ mode }: AuthCardProps) {
   } = useAuth();
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [isDemoLoading, setIsDemoLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const isUnauthorized = searchParams.get("error") === "unauthorized";
   const isSignUp = mode === "sign-up";
 
   const signInForm = useForm<SignInValues>({
@@ -166,6 +168,12 @@ export function AuthCard({ mode }: AuthCardProps) {
         <div className="mb-6 rounded-lg border border-[#CBA365]/30 bg-[#CBA365]/10 p-4 text-xs font-medium text-[#CBA365]">
           Firebase is not configured yet. Add credentials to{" "}
           <code>.env.local</code> and restart the dev server.
+        </div>
+      ) : null}
+
+      {isUnauthorized ? (
+        <div className="mb-6 rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-xs font-medium text-red-500 text-center">
+          You are not eligible for this tool. Your email has not been approved.
         </div>
       ) : null}
 
