@@ -59,7 +59,7 @@ export function RequireAuth({ children }: { children: ReactNode }) {
 }
 
 export function GuestOnly({ children }: { children: ReactNode }) {
-  const { user, loading, signOutUser } = useAuth();
+  const { user, loading, signOutUser, expelUnauthorizedUser } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -67,14 +67,14 @@ export function GuestOnly({ children }: { children: ReactNode }) {
 
     // If we were bounced back here with an unauthorized error from middleware, sign out.
     if (user && typeof window !== "undefined" && window.location.search.includes("error=unauthorized")) {
-      signOutUser();
+      expelUnauthorizedUser();
       return;
     }
 
     if (user) {
       router.replace("/dashboard");
     }
-  }, [loading, router, user, signOutUser]);
+  }, [loading, router, user, expelUnauthorizedUser]);
 
   const isUnauthorizedError = typeof window !== "undefined" && window.location.search.includes("error=unauthorized");
 

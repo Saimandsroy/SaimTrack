@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  deleteUser,
   type User,
 } from "firebase/auth";
 import {
@@ -29,6 +30,7 @@ type AuthContextValue = {
   signUpWithEmail: (name: string, email: string, password: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   signOutUser: () => Promise<void>;
+  expelUnauthorizedUser: () => Promise<void>;
 };
 
 
@@ -96,6 +98,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await signOut(requireAuth());
   }, []);
 
+  const expelUnauthorizedUser = useCallback(async () => {
+    if (typeof document !== "undefined") {
+      document.cookie = "auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=lax";
+    }
+    const authInstance = requireAuth();
+    if (authInstance.currentUser) {
+      try {
+        await deleteUser(authInstance.currentUser);
+      } catch (e) {
+        await signOut(authInstance);
+      }
+    } else {
+      await signOut(authInstance);
+    }
+  }, []);
+
   const value = useMemo(
     () => ({
       user,
@@ -105,8 +123,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signUpWithEmail,
       signInWithGoogle,
       signOutUser,
+      expelUnauthorizedUser,
     }),
-    [loading, signInWithEmail, signInWithGoogle, signOutUser, signUpWithEmail, user],
+    [loading, signInWithEmail, signInWithGoogle, signOutUser, expelUnauthorizedUser, signUpWithEmail, user],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
