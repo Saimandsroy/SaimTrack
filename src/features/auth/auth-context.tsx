@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -55,6 +56,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     return onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
+        const approvedEmailsStr = process.env.NEXT_PUBLIC_APPROVED_EMAILS || "";
+        const userEmail = currentUser.email ? currentUser.email.toLowerCase() : "";
+        if (approvedEmailsStr) {
+          const approvedEmails = approvedEmailsStr.split(",").map(e => e.trim().toLowerCase());
+          if (!approvedEmails.includes(userEmail)) {
+            try {
+              await deleteUser(currentUser);
+            } catch (e) {
+              await signOut(auth);
+            }
+            if (typeof document !== "undefined") {
+              document.cookie = "auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=lax";
+            }
+            setUser(null);
+            setLoading(false);
+            return;
+          }
+        }
+
         const token = await currentUser.getIdToken();
         if (typeof document !== "undefined") {
           document.cookie = `auth-token=${token}; path=/; max-age=1209600; secure; samesite=lax`;
@@ -71,11 +91,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signInWithEmail = useCallback(async (email: string, password: string) => {
+    const approvedEmailsStr = process.env.NEXT_PUBLIC_APPROVED_EMAILS || "";
+    if (approvedEmailsStr) {
+      const approvedEmails = approvedEmailsStr.split(",").map(e => e.trim().toLowerCase());
+      if (!approvedEmails.includes(email.toLowerCase())) {
+        throw new Error("Unauthorized: Your email is not approved to access this project.");
+      }
+    }
     await signInWithEmailAndPassword(requireAuth(), email, password);
   }, []);
 
   const signUpWithEmail = useCallback(
     async (name: string, email: string, password: string) => {
+      const approvedEmailsStr = process.env.NEXT_PUBLIC_APPROVED_EMAILS || "";
+      if (approvedEmailsStr) {
+        const approvedEmails = approvedEmailsStr.split(",").map(e => e.trim().toLowerCase());
+        if (!approvedEmails.includes(email.toLowerCase())) {
+          throw new Error("Unauthorized: Your email is not approved to access this project.");
+        }
+      }
       const credential = await createUserWithEmailAndPassword(
         requireAuth(),
         email,
@@ -88,7 +122,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 
   const signInWithGoogle = useCallback(async () => {
-    await signInWithPopup(requireAuth(), googleProvider);
+    const result = await signInWithPopup(requireAuth(), googleProvider);
+    const userEmail = result.user.email ? result.user.email.toLowerCase() : "";
+    const approvedEmailsStr = process.env.NEXT_PUBLIC_APPROVED_EMAILS || "";
+    
+    if (approvedEmailsStr) {
+      const approvedEmails = approvedEmailsStr.split(",").map(e => e.trim().toLowerCase());
+      if (!approvedEmails.includes(userEmail)) {
+        try {
+          await deleteUser(result.user);
+        } catch (e) {
+          await signOut(requireAuth());
+        }
+        if (typeof document !== "undefined") {
+          document.cookie = "auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=lax";
+        }
+        throw new Error("Unauthorized: Your email is not approved to access this project.");
+      }
+    }
   }, []);
 
   const signOutUser = useCallback(async () => {
