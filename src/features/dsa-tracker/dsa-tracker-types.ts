@@ -40,6 +40,10 @@ export type DsaProblem = {
   solvedDate: string;
   notes: string;
   revisionRequired: boolean;
+  learningSummary?: string;
+  mistakesMade?: string;
+  approachUsed?: string;
+  revisions?: { date: string }[];
 };
 
 export type DsaPeriod = "today" | "week" | "month" | "total";

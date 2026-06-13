@@ -12,7 +12,10 @@ import {
   Search,
   Sparkles,
   Trash2,
+  Trophy,
 } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState, type SelectHTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -63,6 +66,7 @@ const staggerItem = {
 
 export function GoalTrackerClient() {
   const { user } = useAuth();
+  const router = useRouter();
   const [hydrated, setHydrated] = useState(false);
   const [goals, setGoals] = useState<Goal[]>([]);
   const [search, setSearch] = useState("");
@@ -184,23 +188,33 @@ export function GoalTrackerClient() {
         transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] }}
         className="flex flex-col md:flex-row md:items-end justify-between gap-6"
       >
-        <div>
-          <h1 className="text-[28px] font-medium tracking-tight text-text-primary">
-            Goal Tracker
-          </h1>
-          <p className="mt-1 text-[15px] text-text-secondary">
-            Set and execute on macro milestones.
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-[13px] font-medium text-text-secondary">{filteredGoals.length} goals</span>
-          <span className="text-text-tertiary">|</span>
-          <button 
-            onClick={resetWorkspace} 
-            className="flex items-center gap-2 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors"
-          >
-            <RotateCcw className="h-4 w-4" /> Reset
-          </button>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <h1 className="text-[28px] font-medium tracking-tight text-text-primary">
+              Goal Tracker
+            </h1>
+            <p className="mt-1 text-[15px] text-text-secondary">
+              Set and execute on macro milestones.
+            </p>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link 
+              href="/goals/completed" 
+              className="text-[13px] font-medium text-text-secondary hover:text-success transition-colors border border-border bg-surface hover:bg-surface-raised px-4 py-1.5 rounded-md flex items-center gap-2"
+            >
+              <Trophy className="h-4 w-4" /> Trophy Room
+            </Link>
+            <div className="flex items-center gap-3">
+              <span className="text-[13px] font-medium text-text-secondary">{filteredGoals.length} goals</span>
+              <span className="text-text-tertiary">|</span>
+              <button 
+                onClick={resetWorkspace} 
+                className="flex items-center gap-2 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors"
+              >
+                <RotateCcw className="h-4 w-4" /> Reset
+              </button>
+            </div>
+          </div>
         </div>
       </motion.div>
 
@@ -321,7 +335,8 @@ export function GoalTrackerClient() {
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
-                          className="group flex flex-col py-5 border-b border-border last:border-0"
+                          onClick={() => router.push(`/goals/${goal.id}`)}
+                          className="group flex flex-col py-5 border-b border-border last:border-0 cursor-pointer hover:bg-white/[0.02] -mx-2 px-2 rounded-md transition-colors"
                         >
                           <div className="flex items-start justify-between">
                             <div className="flex flex-col gap-1 min-w-0 pr-4 flex-1">
@@ -351,13 +366,13 @@ export function GoalTrackerClient() {
                             </div>
                             
                             <div className="flex flex-col items-end gap-2 shrink-0 ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <button onClick={() => updateGoal(goal.id, { progress: Math.min(goal.target, goal.progress + 1) })} className="text-[11px] font-medium text-text-secondary hover:text-accent">
+                              <button onClick={(e) => { e.stopPropagation(); updateGoal(goal.id, { progress: Math.min(goal.target, goal.progress + 1) }) }} className="text-[11px] font-medium text-text-secondary hover:text-accent">
                                 +1 Progress
                               </button>
-                              <button onClick={() => updateGoal(goal.id, { completed: !goal.completed })} className="text-[11px] font-medium text-text-secondary hover:text-text-primary">
+                              <button onClick={(e) => { e.stopPropagation(); updateGoal(goal.id, { completed: !goal.completed }) }} className="text-[11px] font-medium text-text-secondary hover:text-text-primary">
                                 {goal.completed ? "Reopen" : "Complete"}
                               </button>
-                              <button onClick={() => removeGoal(goal.id)} className="text-[11px] font-medium text-text-secondary hover:text-destructive">
+                              <button onClick={(e) => { e.stopPropagation(); removeGoal(goal.id) }} className="text-[11px] font-medium text-text-secondary hover:text-destructive">
                                 Delete
                               </button>
                             </div>

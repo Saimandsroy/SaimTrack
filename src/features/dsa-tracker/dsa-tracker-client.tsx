@@ -13,6 +13,8 @@ import {
   Trash2,
   BadgeCheck,
 } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Bar, BarChart, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
@@ -84,9 +86,10 @@ const staggerItem = {
 
 export function DsaTrackerClient() {
   const { user } = useAuth();
+  const router = useRouter();
   const [hydrated, setHydrated] = useState(false);
   const [problems, setProblems] = useState<DsaProblem[]>([]);
-  const [period, setPeriod] = useState<DsaPeriod>("week");
+  const [period, setPeriod] = useState<DsaPeriod>("total");
   const [search, setSearch] = useState("");
   const [topicFilter, setTopicFilter] = useState<DsaTopic | "all">("all");
 
@@ -197,23 +200,33 @@ export function DsaTrackerClient() {
         transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] }}
         className="flex flex-col md:flex-row md:items-end justify-between gap-6"
       >
-        <div>
-          <h1 className="text-[28px] font-medium tracking-tight text-text-primary">
-            DSA Tracker
-          </h1>
-          <p className="mt-1 text-[15px] text-text-secondary">
-            Log solved questions, analyze topic spread, and manage revisions.
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-[13px] font-medium text-text-secondary">{totalCount} in scope</span>
-          <span className="text-text-tertiary">|</span>
-          <button 
-            onClick={resetWorkspace} 
-            className="flex items-center gap-2 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors"
-          >
-            <RotateCcw className="h-4 w-4" /> Reset
-          </button>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <h1 className="text-[28px] font-medium tracking-tight text-text-primary">
+              DSA Tracker
+            </h1>
+            <p className="mt-1 text-[15px] text-text-secondary">
+              Log solved questions, analyze topic spread, and manage revisions.
+            </p>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link 
+              href="/dsa-tracker/problems" 
+              className="text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors border border-border bg-surface hover:bg-surface-raised px-4 py-1.5 rounded-md flex items-center gap-2"
+            >
+              Full Problem Log &rarr;
+            </Link>
+            <div className="flex items-center gap-3">
+              <span className="text-[13px] font-medium text-text-secondary">{totalCount} in scope</span>
+              <span className="text-text-tertiary">|</span>
+              <button 
+                onClick={resetWorkspace} 
+                className="flex items-center gap-2 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors"
+              >
+                <RotateCcw className="h-4 w-4" /> Reset
+              </button>
+            </div>
+          </div>
         </div>
       </motion.div>
 
@@ -356,13 +369,14 @@ export function DsaTrackerClient() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="group flex flex-col py-3 border-b border-border last:border-0"
+                        onClick={() => router.push(`/dsa-tracker/problem/${problem.id}`)}
+                        className="group flex flex-col py-3 border-b border-border last:border-0 hover:bg-white/[0.02] -mx-2 px-2 rounded-md transition-colors cursor-pointer"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex flex-col gap-1 min-w-0 pr-4">
                             <div className="flex items-center gap-2">
                               {problem.revisionRequired && <div className="h-1.5 w-1.5 rounded-full bg-warning shrink-0" title="Needs Revision" />}
-                              <span className="text-[13px] font-medium text-text-primary truncate">{problem.name}</span>
+                              <span className="text-[13px] font-medium text-text-primary group-hover:text-accent transition-colors truncate">{problem.name}</span>
                             </div>
                             <span className="text-[11px] text-text-secondary truncate">
                               {problem.platform} · <span className={
@@ -380,7 +394,7 @@ export function DsaTrackerClient() {
                             <span className="text-[10px] uppercase tracking-wider text-text-tertiary">
                               {formatSolvedDate(problem.solvedDate)}
                             </span>
-                            <button onClick={() => deleteProblem(problem.id)} className="opacity-0 group-hover:opacity-100 transition-opacity text-text-tertiary hover:text-destructive">
+                            <button onClick={(e) => { e.stopPropagation(); deleteProblem(problem.id); }} className="opacity-0 group-hover:opacity-100 transition-opacity text-text-tertiary hover:text-destructive">
                               <Trash2 className="h-3.5 w-3.5" />
                             </button>
                           </div>
@@ -394,7 +408,11 @@ export function DsaTrackerClient() {
                     </div>
                   )}
                 </AnimatePresence>
-                {filteredProblems.length > 10 && <div className="pt-3 text-[12px] text-accent text-center cursor-pointer">View all ({filteredProblems.length}) →</div>}
+                {filteredProblems.length > 10 && (
+                  <Link href="/dsa-tracker/problems" className="pt-3 text-[12px] text-accent text-center hover:underline block">
+                    View all ({filteredProblems.length}) &rarr;
+                  </Link>
+                )}
               </div>
             </section>
           </motion.div>

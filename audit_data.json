@@ -1,0 +1,324 @@
+{
+  "uid": "DxTmNQZjiheoZMNhaYBEswLmYnJ3",
+  "email": "saimandsroy@gmail.com",
+  "state": {
+    "activeTimer": null,
+    "entries": [
+      {
+        "id": "6f44dbc4-c6e8-480c-b0ae-838cc8ff68dc",
+        "date": "2026-06-11T14:44:24.404Z",
+        "category": "DSA",
+        "endTime": "2026-06-11T16:03:37.966Z",
+        "duration": 4753562,
+        "startTime": "2026-06-11T14:44:24.404Z",
+        "title": "passport"
+      },
+      {
+        "id": "f4923ee0-ec19-4816-9d13-9706597abe70",
+        "category": "DSA",
+        "date": "2026-06-11T07:31:49.590Z",
+        "endTime": "2026-06-11T09:10:38.728Z",
+        "duration": 5929138,
+        "startTime": "2026-06-11T07:31:49.590Z",
+        "title": "Focused study session 1"
+      },
+      {
+        "endTime": "2026-06-10T05:02:29.390Z",
+        "category": "DSA",
+        "date": "2026-06-09T15:26:38.252Z",
+        "id": "7588b2b3-ecbd-4af8-bbe1-22f5c02cbbe4",
+        "title": "Focused study session",
+        "startTime": "2026-06-09T15:26:38.252Z",
+        "duration": 1721039
+      },
+      {
+        "endTime": "2026-06-09T11:30:00.000Z",
+        "id": "d08099a0-ecfa-4247-9e1f-0ee0dcfbe059",
+        "category": "Development",
+        "date": "2026-06-09T11:00:00.000Z",
+        "title": "dsa",
+        "startTime": "2026-06-09T11:00:00.000Z",
+        "duration": 1800000
+      },
+      {
+        "duration": 899996,
+        "startTime": "2026-06-09T14:40:10.565Z",
+        "title": "Focused study session",
+        "category": "DSA",
+        "date": "2026-06-09T14:40:10.565Z",
+        "id": "ea79dd43-8f75-4864-9a0a-9714d1ed23a4",
+        "endTime": "2026-06-09T15:01:39.894Z"
+      },
+      {
+        "endTime": "2026-06-09T14:40:08.635Z",
+        "category": "DSA",
+        "date": "2026-06-09T13:28:01.502Z",
+        "id": "678dbcfd-7220-4efe-b0f8-a31cce2a9e3d",
+        "title": "Focused study session",
+        "duration": 4098457,
+        "startTime": "2026-06-09T13:28:01.502Z"
+      },
+      {
+        "title": "Focused study session",
+        "startTime": "2026-06-09T11:42:13.457Z",
+        "duration": 5652049,
+        "endTime": "2026-06-09T13:16:25.506Z",
+        "category": "DSA",
+        "date": "2026-06-09T11:42:13.457Z",
+        "id": "80bf32c7-1461-4104-9bb6-00250b7a584d"
+      },
+      {
+        "endTime": "2026-06-09T03:25:52.804Z",
+        "id": "4cb79b30-6aa5-4b75-88b5-7d8ea0438dbe",
+        "category": "DSA",
+        "date": "2026-06-09T02:42:59.408Z",
+        "title": "Focused study session",
+        "duration": 2573396,
+        "startTime": "2026-06-09T02:42:59.408Z"
+      },
+      {
+        "duration": 5400000,
+        "startTime": "2026-06-09T15:00:00.000Z",
+        "title": "dsa and linkedin",
+        "id": "91c8f258-8366-4ee6-9e24-60aad07a90db",
+        "date": "2026-06-09T15:00:00.000Z",
+        "category": "DSA",
+        "endTime": "2026-06-09T16:30:00.000Z"
+      },
+      {
+        "duration": 1942922,
+        "startTime": "2026-06-08T11:02:26.539Z",
+        "title": "Focused study session 2",
+        "id": "a9ea77cb-1951-410d-94ed-7eaef4caba60",
+        "category": "DSA",
+        "date": "2026-06-08T11:02:26.539Z",
+        "endTime": "2026-06-08T15:26:42.951Z"
+      },
+      {
+        "title": "Focused study session 2",
+        "duration": 3437832,
+        "startTime": "2026-06-08T09:31:24.602Z",
+        "endTime": "2026-06-08T10:46:35.328Z",
+        "id": "76c58cef-f4a6-474d-a853-a1da3ab1236d",
+        "category": "DSA",
+        "date": "2026-06-08T09:31:24.602Z"
+      },
+      {
+        "endTime": "2026-06-08T09:30:00.000Z",
+        "id": "ec35e7a8-ebcc-431d-880d-ceae51526fde",
+        "category": "DSA",
+        "date": "2026-06-08T09:05:00.000Z",
+        "title": "dsa",
+        "startTime": "2026-06-08T09:05:00.000Z",
+        "duration": 1500000
+      },
+      {
+        "duration": 1800000,
+        "startTime": "2026-06-08T02:30:00.000Z",
+        "title": "focused session",
+        "category": "DSA",
+        "date": "2026-06-08T02:30:00.000Z",
+        "id": "0ba64c42-fb16-41d2-a88a-f0a0a9ce5c4d",
+        "endTime": "2026-06-08T03:00:00.000Z"
+      },
+      {
+        "endTime": "2026-06-08T06:11:53.938Z",
+        "id": "0bb524b6-04d2-4767-a106-8c16904aeb2b",
+        "date": "2026-06-08T05:07:39.679Z",
+        "category": "DSA",
+        "title": "Focused study session 2",
+        "startTime": "2026-06-08T05:07:39.679Z",
+        "duration": 3854259
+      },
+      {
+        "date": "2026-06-08T03:19:08.690Z",
+        "category": "DSA",
+        "id": "1d91ed01-daf6-4072-950b-5a9ffeeaad1a",
+        "endTime": "2026-06-08T04:42:04.625Z",
+        "duration": 4975935,
+        "startTime": "2026-06-08T03:19:08.690Z",
+        "title": "Focused study session"
+      },
+      {
+        "title": "DSA focused",
+        "duration": 5100000,
+        "startTime": "2026-06-08T00:50:00.000Z",
+        "endTime": "2026-06-08T02:15:00.000Z",
+        "id": "f27fea8a-2d61-4817-bb2b-125c399e4015",
+        "date": "2026-06-08T00:50:00.000Z",
+        "category": "DSA"
+      },
+      {
+        "title": "dsa session",
+        "duration": 6900000,
+        "startTime": "2026-06-06T09:35:00.000Z",
+        "endTime": "2026-06-06T11:30:00.000Z",
+        "id": "c5be7e90-0004-4869-be76-408f780e8898",
+        "date": "2026-06-06T09:35:00.000Z",
+        "category": "DSA"
+      },
+      {
+        "title": "linkedin upload",
+        "startTime": "2026-06-07T14:35:00.000Z",
+        "duration": 3600000,
+        "endTime": "2026-06-07T15:35:00.000Z",
+        "id": "0eea38bb-f1e2-4554-a8a9-148e2d8f68da",
+        "category": "DSA",
+        "date": "2026-06-07T14:35:00.000Z"
+      },
+      {
+        "category": "DSA",
+        "date": "2026-06-07T17:05:04.969Z",
+        "id": "8ed15069-a8d0-4de9-b0d8-1e3feb44856e",
+        "endTime": "2026-06-07T17:23:28.277Z",
+        "duration": 1103308,
+        "startTime": "2026-06-07T17:05:04.969Z",
+        "title": "Focused study session"
+      },
+      {
+        "title": "Focused study session",
+        "duration": 4913165,
+        "startTime": "2026-06-07T13:09:13.943Z",
+        "endTime": "2026-06-07T14:31:07.109Z",
+        "date": "2026-06-07T13:09:13.943Z",
+        "category": "DSA",
+        "id": "d1b7e301-64ed-4f47-811e-472a4f08d663"
+      },
+      {
+        "duration": 1130483,
+        "startTime": "2026-06-07T12:39:25.744Z",
+        "title": "Focused study session",
+        "date": "2026-06-07T12:39:25.744Z",
+        "category": "DSA",
+        "id": "16534288-beb5-4648-af8d-64196c2c6010",
+        "endTime": "2026-06-07T12:58:16.227Z"
+      },
+      {
+        "duration": 9416644,
+        "startTime": "2026-06-07T03:49:23.984Z",
+        "title": "Focused study session 1",
+        "id": "64dc4705-2702-4c59-9cce-e3ebff23b84b",
+        "category": "DSA",
+        "date": "2026-06-07T03:49:23.984Z",
+        "endTime": "2026-06-07T06:26:20.628Z"
+      },
+      {
+        "startTime": "2026-06-06T06:30:00.000Z",
+        "duration": 5400000,
+        "title": "dsa session 2",
+        "date": "2026-06-06T06:30:00.000Z",
+        "category": "DSA",
+        "id": "bcd79791-06b9-45d2-b0c2-3e1cc6e8c1a4",
+        "endTime": "2026-06-06T08:00:00.000Z"
+      },
+      {
+        "endTime": "2026-06-06T03:47:21.395Z",
+        "id": "4d0c2359-c7d9-4260-bb39-ae3f97e90b73",
+        "date": "2026-06-06T02:42:53.126Z",
+        "category": "DSA",
+        "title": "dsa session 1",
+        "startTime": "2026-06-06T02:42:53.126Z",
+        "duration": 3868269
+      },
+      {
+        "startTime": "2026-06-05T15:14:34.778Z",
+        "duration": 4166728,
+        "title": "dsa session",
+        "category": "DSA",
+        "date": "2026-06-05T15:14:34.778Z",
+        "id": "a32a30e9-30fd-4e59-8c6e-a667e58de4ca",
+        "endTime": "2026-06-05T16:24:01.506Z"
+      },
+      {
+        "title": "client work",
+        "startTime": "2026-06-05T11:20:00.000Z",
+        "duration": 3000000,
+        "endTime": "2026-06-05T12:10:00.000Z",
+        "id": "466ad4c7-53dc-4ec8-bdb8-dbcc459d3a1e",
+        "date": "2026-06-05T11:20:00.000Z",
+        "category": "Client Work"
+      },
+      {
+        "endTime": "2026-06-05T11:19:07.744Z",
+        "date": "2026-06-05T09:10:10.791Z",
+        "category": "DSA",
+        "id": "ead51e56-d5b3-4b97-9186-e37add3c3533",
+        "title": "Focused study session 1 dsa",
+        "startTime": "2026-06-05T09:10:10.791Z",
+        "duration": 6798890
+      },
+      {
+        "date": "2026-06-04T08:30:00.000Z",
+        "category": "DSA",
+        "id": "65d89d79-79c9-4b3d-a8b6-9d18399d1c12",
+        "endTime": "2026-06-04T09:30:00.000Z",
+        "duration": 3600000,
+        "startTime": "2026-06-04T08:30:00.000Z",
+        "title": "dsa session 4 "
+      },
+      {
+        "startTime": "2026-06-04T06:52:30.150Z",
+        "duration": 4690947,
+        "title": "Focused study session 3 (big)",
+        "category": "DSA",
+        "date": "2026-06-04T06:52:30.150Z",
+        "id": "8504b253-f4a4-477a-9c58-37e6906e3dc1",
+        "endTime": "2026-06-04T08:10:41.097Z"
+      },
+      {
+        "startTime": "2026-06-04T04:34:36.309Z",
+        "duration": 500903,
+        "title": "Study session 3 small",
+        "category": "DSA",
+        "date": "2026-06-04T04:34:36.309Z",
+        "id": "6817989d-fadf-4434-8689-c7d305c5abad",
+        "endTime": "2026-06-04T04:42:57.212Z"
+      },
+      {
+        "category": "DSA",
+        "date": "2026-06-04T03:13:05.880Z",
+        "id": "4ba0b5c9-ebb1-4914-8d5c-2f60a4e23b37",
+        "endTime": "2026-06-04T04:34:07.209Z",
+        "duration": 4861329,
+        "startTime": "2026-06-04T03:13:05.880Z",
+        "title": "Study session 2"
+      },
+      {
+        "id": "f739d81a-44c9-43d4-a742-1b2c0d99c8bc",
+        "category": "DSA",
+        "date": "2026-06-04T01:22:05.101Z",
+        "endTime": "2026-06-04T02:49:07.808Z",
+        "startTime": "2026-06-04T01:22:05.101Z",
+        "duration": 5222707,
+        "title": "Study session 1"
+      },
+      {
+        "title": "DSA session 1(Array)",
+        "duration": 3445352,
+        "startTime": "2026-06-03T09:51:22.849Z",
+        "endTime": "2026-06-03T10:48:48.201Z",
+        "id": "051e4a5a-d65e-424b-b131-95f55a709336",
+        "date": "2026-06-03T09:51:22.849Z",
+        "category": "DSA"
+      },
+      {
+        "id": "07303c8f-1566-4129-86b7-f9384b894959",
+        "date": "2026-06-03T06:26:43.346Z",
+        "category": "DSA",
+        "endTime": "2026-06-03T06:44:54.530Z",
+        "startTime": "2026-06-03T06:26:43.346Z",
+        "duration": 1091184,
+        "title": "Session 1 of Dsa"
+      },
+      {
+        "category": "DSA",
+        "date": "2026-06-03T04:31:07.950Z",
+        "id": "3dc6a2dd-71d0-420e-8c71-8e9c06da8a8e",
+        "endTime": "2026-06-03T04:31:11.187Z",
+        "duration": 3237,
+        "startTime": "2026-06-03T04:31:07.950Z",
+        "title": "Focused study session"
+      }
+    ]
+  }
+}

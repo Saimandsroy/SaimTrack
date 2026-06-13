@@ -100,7 +100,10 @@ export default function DashboardPage() {
 
   // Hero Analytics
   const activityData = useMemo(() => buildDailySeries(timeState.entries), [timeState.entries]);
-  const past7DaysTotal = useMemo(() => activityData.reduce((sum, d) => sum + d.hours, 0), [activityData]);
+  const lifetimeTotal = useMemo(() => {
+    const ms = timeState.entries.reduce((sum: number, e: TimeEntry) => sum + e.duration, 0);
+    return Number((ms / 36e5).toFixed(1));
+  }, [timeState.entries]);
 
   // DSA Mission Control
   const totalDsaSolved = dsaProblems.length;
@@ -199,16 +202,16 @@ export default function DashboardPage() {
         <motion.section variants={staggerItem} className="rounded-xl border border-border bg-surface p-6 shadow-card hover:border-border-hover hover:-translate-y-0.5 transition-all duration-200">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
             <div>
-              <h3 className="text-[12px] font-medium text-text-tertiary uppercase tracking-[0.06em]">Study Hours (7D)</h3>
+              <h3 className="text-[12px] font-medium text-text-tertiary uppercase tracking-[0.06em]">Lifetime Study Hours</h3>
               <div className="flex items-baseline gap-3 mt-1">
-                <span className="text-[56px] font-semibold text-text-primary tracking-tight leading-[1.1]">{past7DaysTotal.toFixed(1)}</span>
+                <span className="text-[56px] font-semibold text-text-primary tracking-tight leading-[1.1]">{lifetimeTotal.toFixed(1)}</span>
                 {/* Simplified trend text since we only load current state */}
-                <span className="text-[12px] text-text-tertiary">total logged recently</span>
+                <span className="text-[12px] text-text-tertiary">total logged across all time</span>
               </div>
             </div>
             
             <div className="flex gap-4 text-[12px] font-medium text-text-tertiary">
-              <button className="text-text-primary border-b border-accent pb-1">7D</button>
+              <button className="text-text-primary border-b border-accent pb-1">Lifetime</button>
             </div>
           </div>
           

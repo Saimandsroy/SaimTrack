@@ -12,4 +12,6 @@ export type Goal = {
   notes: string;
   completed: boolean;
   createdAt: string;
+  completedAt?: string;
+  milestones?: { id: string; title: string; completed: boolean }[];
 };

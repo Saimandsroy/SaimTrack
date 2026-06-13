@@ -15,6 +15,8 @@ import {
   Square,
   Trash2,
 } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -100,12 +102,13 @@ const staggerItem = {
 
 export function TimeTrackerClient() {
   const { user } = useAuth();
+  const router = useRouter();
   const [hydrated, setHydrated] = useState(false);
   const [entries, setEntries] = useState<TimeEntry[]>([]);
   const [activeTimer, setActiveTimer] = useState<ActiveTimer | null>(null);
   const [timerTitle, setTimerTitle] = useState("Focused study session");
   const [timerCategory, setTimerCategory] = useState<TimeCategory>("DSA");
-  const [selectedPeriod, setSelectedPeriod] = useState<TimeTrackerPeriod>("week");
+  const [selectedPeriod, setSelectedPeriod] = useState<TimeTrackerPeriod>("lifetime");
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<TimeCategory | "all">("all");
   const [now, setNow] = useState(Date.now());
@@ -327,29 +330,39 @@ export function TimeTrackerClient() {
         transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] }}
         className="flex flex-col md:flex-row md:items-end justify-between gap-6"
       >
-        <div>
-          <h1 className="text-[28px] font-medium tracking-tight text-text-primary">
-            Time Tracker
-          </h1>
-          <p className="mt-1 text-[15px] text-text-secondary">
-            Live execution and historical logs.
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button onClick={exportEntries} className="flex items-center gap-2 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors">
-            <Download className="h-4 w-4" /> Export
-          </button>
-          <span className="text-text-tertiary">|</span>
-          <button 
-            onClick={() => {
-              setEntries(defaultTimeTrackerState.entries);
-              setActiveTimer(defaultTimeTrackerState.activeTimer);
-              toast.message("Workspace cleared.");
-            }} 
-            className="flex items-center gap-2 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors"
-          >
-            <RotateCcw className="h-4 w-4" /> Reset
-          </button>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <h1 className="text-[28px] font-medium tracking-tight text-text-primary">
+              Time Tracker
+            </h1>
+            <p className="mt-1 text-[15px] text-text-secondary">
+              Live execution and historical logs.
+            </p>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link 
+              href="/time-tracker/sessions" 
+              className="text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors border border-border bg-surface hover:bg-surface-raised px-4 py-1.5 rounded-md flex items-center gap-2"
+            >
+              View All Sessions &rarr;
+            </Link>
+            <div className="flex items-center gap-3">
+              <button onClick={exportEntries} className="flex items-center gap-2 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors">
+                <Download className="h-4 w-4" /> Export
+              </button>
+              <span className="text-text-tertiary">|</span>
+              <button 
+                onClick={() => {
+                  setEntries(defaultTimeTrackerState.entries);
+                  setActiveTimer(defaultTimeTrackerState.activeTimer);
+                  toast.message("Workspace cleared.");
+                }} 
+                className="flex items-center gap-2 text-[13px] font-medium text-text-secondary hover:text-text-primary transition-colors"
+              >
+                <RotateCcw className="h-4 w-4" /> Reset
+              </button>
+            </div>
+          </div>
         </div>
       </motion.div>
 
@@ -563,7 +576,11 @@ export function TimeTrackerClient() {
                     <div className="py-8 text-center text-[12px] text-text-tertiary">No sessions logged.</div>
                   )}
                 </AnimatePresence>
-                {visibleEntries.length > 8 && <div className="pt-3 text-[12px] text-accent text-center cursor-pointer">View all ({visibleEntries.length}) →</div>}
+                {visibleEntries.length > 8 && (
+                  <Link href="/time-tracker/sessions" className="pt-3 text-[12px] text-accent text-center hover:underline block">
+                    View all ({visibleEntries.length}) &rarr;
+                  </Link>
+                )}
               </div>
             </section>
           </motion.div>

@@ -18,6 +18,7 @@ export type TimeEntry = {
   endTime: string;
   duration: number;
   date: string;
+  notes?: string;
 };
 
 export type ActiveTimer = {
